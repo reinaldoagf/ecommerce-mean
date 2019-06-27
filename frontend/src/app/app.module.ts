@@ -14,9 +14,11 @@ import { UserService } from './shared/user.service';
 //other
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { UserProfileComponent } from './logged-in/user-profile/user-profile.component';
+import { LoggedInComponent } from './logged-in/logged-in.component';
 
 @NgModule({
-  declarations: [AppComponent, UserComponent, SignUpComponent, SignInComponent],
+  declarations: [AppComponent, UserComponent, SignUpComponent, SignInComponent, UserProfileComponent, LoggedInComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [{
     provide: HTTP_INTERCEPTORS,
