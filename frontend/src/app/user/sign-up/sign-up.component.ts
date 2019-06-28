@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from "@angular/router";
 
 import { UserService } from '../../shared/user.service'
 @Component({
@@ -12,8 +13,11 @@ export class SignUpComponent implements OnInit {
   showSucessMessage: boolean;
   serverErrorMessages: string;
 
-  constructor(private userService: UserService) {}
-  ngOnInit() {}
+  constructor(private userService: UserService, private router: Router) { }
+  ngOnInit() {
+    if (this.userService.isLoggedIn())
+      this.router.navigateByUrl("/profile");
+  }
   onSubmit(form: NgForm) {
     this.userService.postUser(form.value).subscribe(
       res => {
