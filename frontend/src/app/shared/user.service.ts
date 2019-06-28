@@ -26,15 +26,13 @@ export class UserService {
 
   postUser(user: User) {
     return this.http.post(
-      environment.apiBaseUrl + "/register",
+      environment.apiBaseUrl + "/auth/register",
       user,
       this.noAuthHeader
     );
   }
 
   login(authCredentials) {
-    console.log("Login");
-    console.log(this.noAuthHeader);
     return this.http.post(
       environment.apiBaseUrl + "/auth/authenticate",
       authCredentials,
@@ -43,7 +41,7 @@ export class UserService {
   }
 
   getUserProfile() {
-    return this.http.get(environment.apiBaseUrl + "/userProfile");
+    return this.http.get(environment.apiBaseUrl + "/user/profile");
   }
 
   //Helper Methods

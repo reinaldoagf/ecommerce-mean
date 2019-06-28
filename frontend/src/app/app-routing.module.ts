@@ -20,7 +20,7 @@ const routes: Routes = [
       children: [{ path: '', component: SignInComponent }]
   },
   {
-      path: 'userprofile', 
+      path: 'profile', 
     component: LoggedInComponent,
       canActivate:[AuthGuard],
     children: [{ path: '', component: UserProfileComponent }]

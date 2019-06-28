@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const passport = require("passport");
+const md5 = require("md5");
 
 const User = mongoose.model("User");
 
@@ -8,6 +9,7 @@ module.exports.register = async (req, res, next) => {
     user.fullName = req.body.fullName;
     user.email = req.body.email;
     user.password = req.body.password;
+    user.gravatar = md5(req.body.email);
     try{
       const doc=await user.save();
       res.status(200).send(doc);

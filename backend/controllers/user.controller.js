@@ -21,7 +21,7 @@ module.exports.userProfile = async (req, res, next) => {
         return res
             .status(404)
             .json({ status: false, message: "User record not found." });
-        res.status(200).send(doc);
+        res.status(200).json({user: _.pick(doc, ["fullName", "email","gravatar","role"])});
     }catch(err){
         if (err.code == 11000)
           res.status(404).send([err]);
