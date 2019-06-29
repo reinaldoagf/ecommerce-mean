@@ -1,0 +1,90 @@
+
+<div id="signupbox" style=" margin-top:50px" class="mainbox col-md-4">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">Registro de producto</div>
+        </div>
+        <div class="panel-body">
+            <!-- Success message -->
+            <!--  -->
+            <div *ngIf="showSucessMessage" role="alert" class="alert alert-success">
+                Saved successfully
+            </div>
+            <!-- Error message -->
+            <div class="alert alert-danger" *ngIf="serverErrorMessages" role="alert">
+                {{serverErrorMessages}}
+            </div>
+            <form class="form-horizontal" #registerProduct="ngForm" (ngSubmit)="registerProduct.valid && onSubmit(registerProduct)">
+                <div class="form-group">
+                    <label for="model" class="col-md-3 control-label">Model</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" #model="ngModel" [(ngModel)]="productService.selectedProduct.model"
+                            name="model" placeholder="Product model" required [ngClass]="{'invalid-textbox' :registerProduct.submitted && !model.model}">
+                    <div *ngIf="registerProduct.submitted && !model.valid">
+                        <label class="validation-message">This field is required.</label>
+                    </div>
+                </div>
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="brand" class="col-md-3 control-label">Brand</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" #brand="ngModel" [(ngModel)]="productService.selectedProduct.brand"
+                            name="brand" placeholder="Product brand" required [ngClass]="{'invalid-textbox' :registerProduct.submitted && !brand.valid}">
+                        <div *ngIf="registerProduct.submitted && !brand.valid">
+                            <label class="validation-message">This field is required.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="price" class="col-md-3 control-label">Price</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" #price="ngModel" [(ngModel)]="productService.selectedProduct.price"
+                            name="price" placeholder="Product price" required [ngClass]="{'invalid-textbox' :registerProduct.submitted && !price.valid}">
+                        <div *ngIf="registerProduct.submitted && !price.valid">
+                            <label class="validation-message">This field is required.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="stock" class="col-md-3 control-label">Stock</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" #stock="ngModel" [(ngModel)]="productService.selectedProduct.stock"
+                            name="stock" placeholder="Product stock" required [ngClass]="{'invalid-textbox' :registerProduct.submitted && !stock.valid }">
+                        <div *ngIf="registerProduct.submitted && !stock.valid">
+                            <label class="validation-message">This field is required.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!-- Button -->
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" value="Register" class="btn btn-info">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of productService.myProducts">
+                <td>{{product.model}}</td>
+                <td>{{product.brand}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.stock}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

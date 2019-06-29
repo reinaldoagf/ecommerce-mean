@@ -17,9 +17,10 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserProfileComponent } from './logged-in/user-profile/user-profile.component';
 import { LoggedInComponent } from './logged-in/logged-in.component';
 import { ProductComponent } from "./logged-in/product/product.component";
+import { MyproductsComponent } from './logged-in/myproducts/myproducts.component';
 
 @NgModule({
-  declarations: [AppComponent, UserComponent, SignUpComponent, SignInComponent, UserProfileComponent, LoggedInComponent, ProductComponent],
+  declarations: [AppComponent, UserComponent, SignUpComponent, SignInComponent, UserProfileComponent, LoggedInComponent, ProductComponent, MyproductsComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -8,19 +8,24 @@ import { Product } from './product.model';
   providedIn: "root"
 })
 export class ProductService {
-    selectedProduct: Product = {
+  selectedProduct: Product = {
+    _id: "",
     model: "",
     brand: "",
-    price: 0
+    price: 0,
+    stock: 0
   };
-
+  myProducts: Product[];
 
   constructor(private http: HttpClient) {}
 
-    registerProduct(productData) {
+  registerProduct(productData) {
     return this.http.post(
-        environment.apiBaseUrl + "/product/register",
+      environment.apiBaseUrl + "/myproducts/register",
       productData
     );
+  }
+  getMyProducts() {
+    return this.http.get(environment.apiBaseUrl + "/myproducts");
   }
 }

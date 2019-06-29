@@ -6,7 +6,8 @@ import { SignUpComponent } from "./user/sign-up/sign-up.component";
 import { SignInComponent } from "./user/sign-in/sign-in.component";
 import { LoggedInComponent } from "./logged-in/logged-in.component";
 import { UserProfileComponent } from "./logged-in/user-profile/user-profile.component";
-import { ProductComponent } from "./logged-in/product/product.component";
+import { MyproductsComponent } from "./logged-in/myproducts/myproducts.component";
+// import { ProductComponent } from "./logged-in/product/product.component";
 //other
 import { AuthGuard } from './auth/auth.guard';
 
@@ -31,7 +32,7 @@ const routes: Routes = [
     path: "myproducts",
     component: LoggedInComponent,
     canActivate: [AuthGuard],
-    children: [{ path: "", component: ProductComponent }]
+    children: [{ path: "", component: MyproductsComponent }]
   },
   {
     path: "",

@@ -15,16 +15,18 @@ router.post("/auth/authenticate", AuthController.authenticate);
 router.get("/user/find/:id", jwtHelper.verifyJwtToken, UserController.findUser);
 router.get("/user/profile", jwtHelper.verifyJwtToken, UserController.userProfile);
 //product
-router.post("/product/register",jwtHelper.verifyJwtToken,ProductController.register);
+router.get("/product/all", jwtHelper.verifyJwtToken, ProductController.all);
+//my products
+router.post("/myproducts/register",jwtHelper.verifyJwtToken,ProductController.register);
 router.get(
-  "/product/details/:id",
+  "/myproducts/details/:id",
   jwtHelper.verifyJwtToken,
   ProductController.details
 );
 router.get(
-  "/product/all",
-  //   jwtHelper.verifyJwtToken,
-  ProductController.all
+  "/myproducts",
+  jwtHelper.verifyJwtToken,
+  ProductController.myProducts
 );
 //bill
 router.post(
