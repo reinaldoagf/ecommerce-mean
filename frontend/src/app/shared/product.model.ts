@@ -12,7 +12,7 @@ export class Product {
            this.price = price;
            this.stock = stock;
          }
-  _id: string;
+          _id: string;
          model: string;
          brand: string;
          price: number;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
 
 import { ProductService } from "../../shared/product.service";
 import { Product } from "../../shared/product.model";
@@ -10,22 +11,52 @@ import { Product } from "../../shared/product.model";
   styleUrls: ["./myproducts.component.css"]
 })
 export class MyproductsComponent implements OnInit {
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private toastr: ToastrService
+  ) {
+  }
   serverErrorMessages: string;
+  p: number = 1;
   ngOnInit() {
     this.getMyProducts();
   }
   onSubmit(form?: NgForm) {
     console.log(form.value);
-    this.productService.registerProduct(form.value).subscribe(
-      res => {
-        this.getMyProducts();
+    if (form.value._id) {
+      this.productService.putProduct(form.value).subscribe(res => {
         this.resetForm(form);
-      },
-      err => {
-        this.serverErrorMessages = err.error.message;
-      }
-    );
+        this.getMyProducts();
+        this.toastr.success("Product updated Succesfully", "Success");
+      });
+    } else {
+      this.productService.registerProduct(form.value).subscribe(
+        res => {
+          this.getMyProducts();
+          this.resetForm(form);
+          this.toastr.success(
+            "Product register Succesfully",
+            "Success"
+          );
+        },
+        err => {
+          this.serverErrorMessages = err.error.message;
+        }
+      );
+    }
+  }
+  editProduct(product: Product) {
+    console.log("editProduct");
+    console.log(product);
+    this.productService.selectedProduct = product;
+  }
+  deleteProduct(_id: string, form: NgForm) {
+    if (confirm("Are you sure you want to delete it?")) {
+      this.productService.deleteProduct(_id).subscribe(res => {
+        this.getMyProducts();
+        this.toastr.success('Product deleted Succesfully', 'Success');
+      });
+    }
   }
   getMyProducts() {
     this.productService.getMyProducts().subscribe(

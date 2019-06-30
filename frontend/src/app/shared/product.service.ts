@@ -28,4 +28,13 @@ export class ProductService {
   getMyProducts() {
     return this.http.get(environment.apiBaseUrl + "/myproducts");
   }
+  deleteProduct(_id: string) {
+    return this.http.delete(environment.apiBaseUrl + "/myproducts/" + _id);
+  }
+  putProduct(product: Product) {
+    return this.http.put(
+      environment.apiBaseUrl + "/myproducts/"+product._id,
+      product
+    );
+  }
 }

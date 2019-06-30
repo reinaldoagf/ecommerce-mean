@@ -28,6 +28,16 @@ router.get(
   jwtHelper.verifyJwtToken,
   ProductController.myProducts
 );
+router.delete(
+  "/myproducts/:id",
+  jwtHelper.verifyJwtToken,
+  ProductController.delete
+);
+router.put(
+  "/myproducts/:id",
+  jwtHelper.verifyJwtToken,
+  ProductController.update
+);
 //bill
 router.post(
   "/bill/checkin",
